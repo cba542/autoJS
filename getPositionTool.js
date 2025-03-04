@@ -1,7 +1,7 @@
 // Request screen capture permission first
 // adb command to setting unit always allow screen capture perssion for autoJS
 // adb shell appops set org.autojs.autojs PROJECT_MEDIA allow 
-if (!requestScreenCapture()) {
+if (!requestScreenCapture(true)) {
     toastLog("Screen capture permission denied");
     exit();
 }
@@ -37,6 +37,7 @@ u.view.setOnTouchListener(function (v, t) {
         // Get coordinates
         var x = Math.floor(t.getRawX());
         var y = Math.floor(t.getRawY());
+        console.log("Original Position: " + x + "," + y);
         
         try {
             // Capture screen to get color at the point
@@ -45,7 +46,7 @@ u.view.setOnTouchListener(function (v, t) {
             // Validate coordinates
             if (x < 0 || y < 0 || x >= screenCapture.getWidth() || y >= screenCapture.getHeight()) {
                 toastLog("Coordinates out of screen bounds: " + x + "," + y);
-                console.log("Screen capture Width:" + screenCapture.getWidth() + "Screen capture Height:" + screenCapture.getHeight());
+                console.log("Screen capture Width:" + screenCapture.getWidth() + " Screen capture Height:" + screenCapture.getHeight());
                 return true;
             }
             
