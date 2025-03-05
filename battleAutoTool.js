@@ -69,7 +69,7 @@ function performSequentialClicks(enabledItems) {
             setTimeout(() => {
                 i++;
                 clickNext();
-            }, 200 + Math.random() * 50);
+            }, 50 + Math.random() * 50);
         }
         
         clickNext();
@@ -120,7 +120,7 @@ w.start.on("check", function(checked) {
 
                 console.log("item " + enabledItems.map(x => x+1).join(" ") + " enable");
             }
-        }, (2000 + Math.random() * 200)); // 每2秒執行一次
+        }, (50 + Math.random() * 50)); // 每2秒執行一次
     } else {
         // 如果start取消勾選，停止定時檢查
         if (checkTimer) {
@@ -146,7 +146,7 @@ w.exit.click(function() {
 w.setPosition(100, 100);
 
 // 保持腳本運行
-setInterval(() => {}, 1000);
+setInterval(() => {}, 50);
 
 
 //记录按键被按下时的触摸坐标
