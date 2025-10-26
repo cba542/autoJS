@@ -43,10 +43,10 @@ const gesturesList = [
 
 // Timing parameters (tweak here if still miss)
 const CLICK_DOWN_MS_MIN = 80;    // press hold duration min
-const CLICK_DOWN_MS_MAX = 120;   // press hold duration max
-const BETWEEN_CLICKS_MS_MIN = 160; // delay between single clicks min
-const BETWEEN_CLICKS_MS_MAX = 240; // delay between single clicks max
-const BETWEEN_CYCLES_MS = 600;     // delay between full cycles
+const CLICK_DOWN_MS_MAX = 100;   // press hold duration max
+const BETWEEN_CLICKS_MS_MIN = 120; // delay between single clicks min
+const BETWEEN_CLICKS_MS_MAX = 180; // delay between single clicks max
+const BETWEEN_CYCLES_MS = 300;     // delay between full cycles
 
 var worker = null;
 var stopRequested = false;
@@ -98,7 +98,7 @@ function performSequentialClicksSync(enabledItems) {
         console.log("Press index " + (idx + 1) + " at (" + x + ", " + y + ")");
         // Use press with a short hold to increase reliability vs click()
         press(x, y, randInt(CLICK_DOWN_MS_MIN, CLICK_DOWN_MS_MAX));
-
+        sleep(30); // short release delay
         sleep(randInt(BETWEEN_CLICKS_MS_MIN, BETWEEN_CLICKS_MS_MAX));
     }
 }
