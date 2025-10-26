@@ -140,13 +140,8 @@ function startWorkerLoop() {
 
             console.log("Cycle order: " + items.map(function (v) { return v + 1; }).join(", "));
 
-            // Avoid floaty intercept during press
-            setWindowTouchable(false);
-            try {
-                performSequentialClicksSync(items);
-            } finally {
-                setWindowTouchable(true);
-            }
+            // perform clicks directly (keep floaty always touchable)
+            performSequentialClicksSync(items);
 
             if (stopRequested) break;
             sleep(BETWEEN_CYCLES_MS);
