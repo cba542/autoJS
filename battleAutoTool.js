@@ -20,6 +20,7 @@ var w = floaty.rawWindow(
                     <checkbox id="cb8" text="8"/>
                     <checkbox id="cb9" text="9"/>
                     <checkbox id="cb10" text="10"/>
+                    <button id="reset" text="reset" w="60" h="40"/>
                     <button id="exit" text="exit" w="60" h="40"/>
                 </horizontal>
             </vertical>
@@ -158,6 +159,26 @@ w.start.on("check", function (checked) {
         stopRequested = true;
     }
 });
+
+// Reset 按鈕
+w.reset.click(function () {
+    // 取得目前是否全部勾選
+    var allChecked = true;
+    for (var i = 1; i <= 10; i++) {
+        if (!w["cb" + i].checked) {
+            allChecked = false;
+            break;
+        }
+    }
+
+    // 若全部都勾選 → 清空；否則 → 全部勾選
+    for (var i = 1; i <= 10; i++) {
+        w["cb" + i].checked = !allChecked;
+    }
+
+    toast(allChecked ? "All checkboxes disabled" : "All checkboxes enabled");
+});
+
 
 // Exit button
 w.exit.click(function () {
